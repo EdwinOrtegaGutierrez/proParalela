@@ -43,6 +43,11 @@ class RandomArray {
 };
 
 int main() {
+    cout << "Integrantes:" << endl;
+    cout << "* Ayala Reyes Arely Daniela" << endl;
+    cout << "* Ortega Gutierrez Edwin Omar" << endl;
+    cout << "* Topete Sarabia Manuel Alejandro" << endl;
+
     #pragma omp parallel
     {
         RandomArray randomArray;
@@ -58,6 +63,11 @@ int main() {
         
         randomArray.printArray();
     }
+
+    cout << "\nIntegrantes:" << endl;
+    cout << "* Ayala Reyes Arely Daniela" << endl;
+    cout << "* Ortega Gutierrez Edwin Omar" << endl;
+    cout << "* Topete Sarabia Manuel Alejandro" << endl;
 
     return 0;
 }
