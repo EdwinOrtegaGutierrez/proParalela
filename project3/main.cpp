@@ -18,28 +18,28 @@ public:
 
     vector<int> crearMatrizAleatoriaOpenMP() {
         while (matriz.size() < maxSize) {
-            int randomNum = rand() % 100 + 1;
+            int randomNum = rand() % 1000 + 1;
             
-            #pragma omp critical
-            {
-                if (find(matriz.begin(), matriz.end(), randomNum) == matriz.end()) {
-                    matriz.push_back(randomNum);
-                }
+            if (find(matriz.begin(), matriz.end(), randomNum) == matriz.end()) {
+                matriz.push_back(randomNum);
             }
         }
         return matriz;
     }
+
+    void verMatriz(vector<int> m){
+        cout << "Matriz generada: " << endl;
+        for (size_t i = 0; i < m.size(); i++) {
+            cout << m[i] << " ";
+            if ((i + 1) % 10 == 0) cout << endl; // Formato de 10x10
+        }
+    }
 };
 
 int main() {
-    OperacionesMatriciales operaciones;
-    vector<int> matrizGenerada = operaciones.crearMatrizAleatoriaOpenMP();
-
-    cout << "Matriz generada: " << matrizGenerada.size() << endl;
-    for (size_t i = 0; i < matrizGenerada.size(); i++) {
-        cout << matrizGenerada[i] << " ";
-        if ((i + 1) % 10 == 0) cout << endl; // Formato de 10x10
-    }
-
+    OperacionesMatriciales om;
+    vector<int> matrizGenerada = om.crearMatrizAleatoriaOpenMP();
+    
+    om.verMatriz(matrizGenerada);
     return 0;
 }
