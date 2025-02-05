@@ -49,7 +49,7 @@ int main() {
     cout << "* Topete Sarabia Manuel Alejandro" << endl;
 
     #pragma omp parallel
-    {
+    {   
         RandomArray randomArray;
         
         #pragma omp critical
