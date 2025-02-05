@@ -2,23 +2,24 @@
 # Actividades
 
 ## Crear una clase llamada `OperacionesMatriciales`
-* Crear Matrices Aleatorias
+
+* Crear Matrices Aleatorias `edwin`
     * Función: crearMatrizAleatoriaOpenMP
     * Descripción: Esta función debe crear una matriz aleatoria distribuida entre los procesos OpenMP. Cada proceso genera una parte de la matriz de manera que no haya duplicados en los elementos.
-* Sumar Matrices
+* Sumar Matrices `Alejandro`
     * Función: sumarMatricesOpenMP
     * Descripción: Esta función debe sumar dos matrices distribuidas en los procesos OpenMP. Cada proceso realiza la suma de su porción de las matrices y los resultados se combinan para obtener la matriz final.
-* Restar Matrices
+* Restar Matrices `Alejandro`
     * Función: restarMatricesOpenMP
     * Descripción: Esta función debe restar dos matrices distribuidas en los procesos OpenMP. Similar a la suma, cada proceso resta su porción de las matrices y los resultados se combinan para obtener la matriz final.
-* Multiplicar Matrices
+* Multiplicar Matrices `Arely`
     * Función: multiplicarMatricesOpenMP
     * Descripción: Esta función debe multiplicar dos matrices distribuidas en los procesos OpenMP. Cada proceso calcula una porción del producto de las matrices y los resultados se combinan para formar la matriz final.
-* Transponer Matriz
+* Transponer Matriz `Arely`
     * Función: transponerMatrizOpenMP
     * Descripción: Esta función debe transponer una matriz distribuida en los procesos OpenMP. Cada proceso transpone su porción de la matriz y los resultados se combinan para obtener la matriz transpuesta.
 
-## Detalles del Main
+## Detalles del Main `edwin`
 Crear Instancias y Variables:
 1. Creen una instancia de la clase OperacionesMatriciales.
 2. Declaren y creen las matrices y otras variables necesarias para las operaciones.
@@ -40,7 +41,7 @@ Mostrar Resultados:
 * Estructuren los resultados de salida de cada operación para que sean mostrados de manera clara y estructurada.
 * Utilicen funciones de impresión para mostrar las matrices resultantes y el tiempo de ejecución.
 
-## Ejemplo de Flujo del Main:
+## Ejemplo de Flujo del Main: `arely`
 Instancias y variables:
 ```cpp
 main(){
