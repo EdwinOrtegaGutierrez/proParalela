@@ -72,7 +72,20 @@ public:
                 }
             }
             return resultado;
+    }
+
+    vector<int> transponerMatrizOpenMP(const vector<int>& matriz) {
+        vector<int> resultado(maxSize);
+        const int N = 10; 
+
+        #pragma omp parallel for collapse(2)
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                resultado[i * N + j] = matriz[j * N + i];
+            }
         }
+        return resultado;
+    }
 
 };
 

@@ -79,9 +79,18 @@ public:
                     om.verMatriz(resultado);
                     break;
                 }
-                case 5:
-                    cout << "Operacion de transposicion de matriz aun no implementada." << endl;
+                case 5:{
+                    vector<int> matriz = om.crearMatrizAleatoriaOpenMP();
+                    
+                    cout << "\nMatriz Original:" << endl;
+                    om.verMatriz(matriz);
+
+                    vector<int> transpuesta = om.transponerMatrizOpenMP(matriz);
+                    
+                    cout << "\nMatriz Transpuesta:" << endl;
+                    om.verMatriz(transpuesta);
                     break;
+                } 
                 case 6:
                     cout << "Saliendo del programa..." << endl;
                     break;
