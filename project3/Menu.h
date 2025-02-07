@@ -11,6 +11,7 @@ class Menu {
 public:
     void mostrarMenu() {
         OperacionesMatriciales om;
+        vector<int> matrizA, matrizB, resultado;
         int opcion;
         
         do {
@@ -26,71 +27,72 @@ public:
             
             switch (opcion) {
                 case 1: {
-                    vector<int> matriz = om.crearMatrizAleatoriaOpenMP();
-                    om.verMatriz(matriz);
+                    matrizA = om.crearMatrizAleatoriaOpenMP();
+                    om.verMatriz(matrizA);
                     break;
                 }
                 case 2: {
-                    vector<int> matrizA = om.crearMatrizAleatoriaOpenMP();
-                    vector<int> matrizB = om.crearMatrizAleatoriaOpenMP();
+                    matrizA = om.crearMatrizAleatoriaOpenMP();
+                    matrizB = om.crearMatrizAleatoriaOpenMP();
                     
-                    cout << "\nMatriz A:" << endl;
+                    cout << "\nMatriz A (Antes de sumar):" << endl;
                     om.verMatriz(matrizA);
                     
-                    cout << "\nMatriz B:" << endl;
+                    cout << "\nMatriz B (Antes de sumar):" << endl;
                     om.verMatriz(matrizB);
                     
-                    vector<int> resultado = om.sumarMatricesOpenMP(matrizA, matrizB);
+                    resultado = om.sumarMatricesOpenMP(matrizA, matrizB);
                     
                     cout << "\nResultado de la suma:" << endl;
                     om.verMatriz(resultado);
                     break;
                 }
                 case 3: {
-                    vector<int> matrizA = om.crearMatrizAleatoriaOpenMP();
-                    vector<int> matrizB = om.crearMatrizAleatoriaOpenMP();
+                    matrizA = om.crearMatrizAleatoriaOpenMP();
+                    matrizB = om.crearMatrizAleatoriaOpenMP();
                     
-                    cout << "\nMatriz A:" << endl;
+                    cout << "\nMatriz A (Antes de restar):" << endl;
                     om.verMatriz(matrizA);
                     
-                    cout << "\nMatriz B:" << endl;
+                    cout << "\nMatriz B (Antes de restar):" << endl;
                     om.verMatriz(matrizB);
                     
-                    vector<int> resultado = om.restarMatricesOpenMP(matrizA, matrizB);
+                    resultado = om.restarMatricesOpenMP(matrizA, matrizB);
                     
-                    cout << "\nResultado de la resta (Pueden generarse valores negativos):" << endl;
-                    //Dada la naturaleza de los numeros tan grandes podemos tener casos como 200-500 donde el resultado sera -300
+                    cout << "\nResultado de la resta:" << endl;
+                    //Dada la naturaleza de los numeros tan grandes podemos tener casos como
+                    // 200-500 donde el resultado sera -300
                     om.verMatriz(resultado);
                     break;
                 }
-                case 4:{
-                    vector<int> matrizA = om.crearMatrizAleatoriaOpenMP();
-                    vector<int> matrizB = om.crearMatrizAleatoriaOpenMP();
-
-                    cout << "\nMatriz A:" << endl;
+                case 4: {
+                    matrizA = om.crearMatrizAleatoriaOpenMP();
+                    matrizB = om.crearMatrizAleatoriaOpenMP();
+                    
+                    cout << "\nMatriz A (Antes de multiplicar):" << endl;
                     om.verMatriz(matrizA);
-
-                    cout << "\nMatriz B:" << endl;
+                    
+                    cout << "\nMatriz B (Antes de multiplicar):" << endl;
                     om.verMatriz(matrizB);
 
-                    vector<int> resultado = om.multiplicarMatricesOpenMP(matrizA, matrizB);
+                    resultado = om.multiplicarMatricesOpenMP(matrizA, matrizB);
 
                     cout << "\nResultado de la multiplicación:" << endl;
                     om.verMatriz(resultado);
                     break;
                 }
-                case 5:{
-                    vector<int> matriz = om.crearMatrizAleatoriaOpenMP();
+                case 5: {
+                    matrizA = om.crearMatrizAleatoriaOpenMP();
                     
-                    cout << "\nMatriz Original:" << endl;
-                    om.verMatriz(matriz);
-
-                    vector<int> transpuesta = om.transponerMatrizOpenMP(matriz);
+                    cout << "\nMatriz Original (Antes de transponer):" << endl;
+                    om.verMatriz(matrizA);
+                    
+                    vector<int> transpuesta = om.transponerMatrizOpenMP(matrizA);
                     
                     cout << "\nMatriz Transpuesta:" << endl;
                     om.verMatriz(transpuesta);
                     break;
-                } 
+                }
                 case 6:
                     cout << "Saliendo del programa..." << endl;
                     break;
@@ -104,3 +106,4 @@ public:
 
 #endif
 
+                   
