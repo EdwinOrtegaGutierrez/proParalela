@@ -1,13 +1,12 @@
 #include <iostream>
 #include <vector>
 #include "OperacionesMatriciales.h"
+#include "Menu.h"
 
 using namespace std;
 
 int main() {
-    OperacionesMatriciales om;
-    vector<int> matrizGenerada = om.crearMatrizAleatoriaOpenMP();
-    
-    om.verMatriz(matrizGenerada);
+    Menu menu;
+    menu.mostrarMenu(); 
     return 0;
 }
