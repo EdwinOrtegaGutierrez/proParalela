@@ -1,11 +1,4 @@
-#ifndef MENU_H
-#define MENU_H
-
-#include <iostream>
-#include "OperacionesMatriciales.h"
-#include <omp.h>
-
-using namespace std;
+#include <chrono>  // Incluir la librería para medir el tiempo
 
 class Menu {
 public:
@@ -13,7 +6,7 @@ public:
         OperacionesMatriciales om;
         vector<int> matrizA, matrizB, resultado;
         int opcion;
-        
+
         do {
             cout << "\n--- MENU DE OPERACIONES MATRICIALES ---" << endl;
             cout << "1. Crear matrices aleatorias" << endl;
@@ -24,7 +17,9 @@ public:
             cout << "6. Salir" << endl;
             cout << "Seleccione una opcion: ";
             cin >> opcion;
-            
+
+            auto start = chrono::high_resolution_clock::now(); // Iniciar el reloj
+
             switch (opcion) {
                 case 1: {
                     matrizA = om.crearMatrizAleatoriaOpenMP();
@@ -34,15 +29,15 @@ public:
                 case 2: {
                     matrizA = om.crearMatrizAleatoriaOpenMP();
                     matrizB = om.crearMatrizAleatoriaOpenMP();
-                    
+
                     cout << "\nMatriz A (Antes de sumar):" << endl;
                     om.verMatriz(matrizA);
-                    
+
                     cout << "\nMatriz B (Antes de sumar):" << endl;
                     om.verMatriz(matrizB);
-                    
+
                     resultado = om.sumarMatricesOpenMP(matrizA, matrizB);
-                    
+
                     cout << "\nResultado de la suma:" << endl;
                     om.verMatriz(resultado);
                     break;
@@ -50,28 +45,29 @@ public:
                 case 3: {
                     matrizA = om.crearMatrizAleatoriaOpenMP();
                     matrizB = om.crearMatrizAleatoriaOpenMP();
-                    
+
                     cout << "\nMatriz A (Antes de restar):" << endl;
                     om.verMatriz(matrizA);
-                    
+
                     cout << "\nMatriz B (Antes de restar):" << endl;
                     om.verMatriz(matrizB);
-                    
+
                     resultado = om.restarMatricesOpenMP(matrizA, matrizB);
-                    
+
                     cout << "\nResultado de la resta:" << endl;
                     //Dada la naturaleza de los numeros tan grandes podemos tener casos como
                     // 200-500 donde el resultado sera -300
+   
                     om.verMatriz(resultado);
                     break;
                 }
                 case 4: {
                     matrizA = om.crearMatrizAleatoriaOpenMP();
                     matrizB = om.crearMatrizAleatoriaOpenMP();
-                    
+
                     cout << "\nMatriz A (Antes de multiplicar):" << endl;
                     om.verMatriz(matrizA);
-                    
+
                     cout << "\nMatriz B (Antes de multiplicar):" << endl;
                     om.verMatriz(matrizB);
 
@@ -83,12 +79,12 @@ public:
                 }
                 case 5: {
                     matrizA = om.crearMatrizAleatoriaOpenMP();
-                    
+
                     cout << "\nMatriz Original (Antes de transponer):" << endl;
                     om.verMatriz(matrizA);
-                    
+
                     vector<int> transpuesta = om.transponerMatrizOpenMP(matrizA);
-                    
+
                     cout << "\nMatriz Transpuesta:" << endl;
                     om.verMatriz(transpuesta);
                     break;
@@ -100,10 +96,15 @@ public:
                     cout << "Opcion invalida, intente de nuevo." << endl;
                     break;
             }
+
+            // Detener el reloj después de la operación
+            auto end = chrono::high_resolution_clock::now();
+            chrono::duration<double> duration = end - start;  // Calcular la duración
+            cout << "Tiempo de ejecución: " << duration.count() << " segundos." << endl;
+
         } while (opcion != 6);
     }
 };
 
-#endif
 
                    
