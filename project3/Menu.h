@@ -63,9 +63,22 @@ public:
                     om.verMatriz(resultado);
                     break;
                 }
-                case 4:
-                    cout << "Operacion de multiplicacion de matrices aun no implementada." << endl;
+                case 4:{
+                    vector<int> matrizA = om.crearMatrizAleatoriaOpenMP();
+                    vector<int> matrizB = om.crearMatrizAleatoriaOpenMP();
+
+                    cout << "\nMatriz A:" << endl;
+                    om.verMatriz(matrizA);
+
+                    cout << "\nMatriz B:" << endl;
+                    om.verMatriz(matrizB);
+
+                    vector<int> resultado = om.multiplicarMatricesOpenMP(matrizA, matrizB);
+
+                    cout << "\nResultado de la multiplicación:" << endl;
+                    om.verMatriz(resultado);
                     break;
+                }
                 case 5:
                     cout << "Operacion de transposicion de matriz aun no implementada." << endl;
                     break;

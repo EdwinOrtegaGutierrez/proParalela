@@ -56,6 +56,24 @@ public:
         }
         return resultado;
     }
+
+    vector<int> multiplicarMatricesOpenMP(const vector<int>& matrizA, const vector<int>& matrizB) {
+        vector<int> resultado(maxSize, 0); // Matriz resultado (inicializada en 0)
+        const int N = 10; // Tamaño de la matriz cuadrada 10x10
+
+            #pragma omp parallel for collapse(2)
+            for (int i = 0; i < N; i++) { // Filas de A
+                for (int j = 0; j < N; j++) { // Columnas de B
+                    int suma = 0;
+                    for (int k = 0; k < N; k++) { // Multiplicación fila A * columna B
+                        suma += matrizA[i * N + k] * matrizB[k * N + j];
+                    }
+                    resultado[i * N + j] = suma;
+                }
+            }
+            return resultado;
+        }
+
 };
 
 #endif // OPERACIONES_MATRICIALES_H
