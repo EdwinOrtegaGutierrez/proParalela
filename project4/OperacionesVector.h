@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <omp.h>
 #include <ctime>
+#include <stdio.h>
 
 using namespace std;
 
@@ -54,8 +55,31 @@ public:
         return static_cast<double>(suma) / datos.size();
     }
     // Métodos pendientes 
-    int Maximo();
-    int Minimo();
+    int Maximo() {
+        if (datos.empty()) return 0;
+
+        int max = datos[0];
+
+        #pragma omp parallel for reduction(max:max)
+        for (int i = 0; i < datos.size(); i++) {
+            if (datos[i] > max) max = datos[i];
+        }
+
+        return max;
+    }
+
+    int Minimo() {
+        if (datos.empty()) return 0;
+
+        int min = datos[0];
+
+        #pragma omp parallel for reduction(min:min)
+        for (int i = 0; i < datos.size(); i++) {
+            if (datos[i] < min) min = datos[i];
+        }
+
+        return min;
+    }
 
     // Obtener referencia al vector
     vector<int>& GetDatos() {

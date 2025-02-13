@@ -31,10 +31,10 @@ void EjecutarMenu(OperacionesVector& opVector) {
                 printf("El promedio del vector es: %.2f\n", opVector.Promedio());
                 break;
             case 3:
-                printf("Funcionalidad de máximo aún no implementada.\n");
+                printf("El máximo del vector es: %d\n", opVector.Maximo());
                 break;
             case 4:
-                printf("Funcionalidad de mínimo aún no implementada.\n");
+                printf("El mínimo del vector es: %d\n", opVector.Minimo());
                 break;
             case 5:
                 printf("Saliendo del programa...\n");
