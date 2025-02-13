@@ -4,6 +4,7 @@
 #include <vector>
 #include <cstdlib>
 #include <omp.h>
+#include <ctime>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ private:
 public:
     // Constructor que crea el arreglo automáticamente
     OperacionesVector() {
+        srand(time(NULL)); 
         CrearArreglo();
     }
 
@@ -26,9 +28,32 @@ public:
         }
     }
 
+    void ImprimirDatos() {
+        printf("Datos del vector:\n");
+        for (size_t i = 0; i < datos.size(); i++) {
+            printf("%d ", datos[i]);
+            if ((i + 1) % 10 == 0) printf("\n"); // Salto de línea cada 10 elementos
+        }
+        printf("\n");
+    }
+    
+
+
+    int Sumatoria() {
+        int suma = 0;
+        #pragma omp parallel for reduction(+:suma)
+        for (int i = 0; i < datos.size(); i++) {
+            suma += datos[i];
+        }
+        return suma;
+    }
+
+    double Promedio() {
+        if (datos.empty()) return 0.0;
+        int suma = Sumatoria();
+        return static_cast<double>(suma) / datos.size();
+    }
     // Métodos pendientes 
-    int Sumatoria();
-    double Promedio();
     int Maximo();
     int Minimo();
 

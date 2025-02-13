@@ -12,6 +12,7 @@ void MostrarMenu() {
     printf("3. Encontrar el máximo del vector\n");
     printf("4. Encontrar el mínimo del vector\n");
     printf("5. Salir\n");
+    printf("6. Test Matriz (Impresion)\n");
     printf("Seleccione una opción: ");
 }
 
@@ -24,10 +25,10 @@ void EjecutarMenu(OperacionesVector& opVector) {
 
         switch (opcion) {
             case 1:
-                printf("Funcionalidad de sumatoria aún no implementada.\n");
+                printf("La sumatoria del vector es: %d\n", opVector.Sumatoria());
                 break;
             case 2:
-                printf("Funcionalidad de promedio aún no implementada.\n");
+                printf("El promedio del vector es: %.2f\n", opVector.Promedio());
                 break;
             case 3:
                 printf("Funcionalidad de máximo aún no implementada.\n");
@@ -40,6 +41,10 @@ void EjecutarMenu(OperacionesVector& opVector) {
                 break;
             default:
                 printf("Opción no válida. Intente nuevamente.\n");
+            case 6:
+            opVector.ImprimirDatos();
+                   break;
+
         }
     } while (opcion != 5);
 }
