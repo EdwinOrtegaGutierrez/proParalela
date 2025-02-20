@@ -10,7 +10,7 @@ using namespace std;
 
 // Conjunto de caracteres
 const string charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; 
-const string target_key = "Ab1CdEfGh9";  // Clave original
+const string target_key = "7qG3wi5WBOdXMHPXxAreSlrSgHrKs7pRcyrPFXBAvhBnS999hL";  // Clave original
 const int KEY_LENGTH = target_key.size();  // Longitud de la clave
 extern volatile bool found;  // Indicador global para señalar que la clave ha sido encontrada
 volatile bool stop = false;  // Indicar si todos los hilos deben detenerse
