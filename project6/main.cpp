@@ -47,5 +47,10 @@ int main() {
     }
 
     cout << "Tiempo de ejecución: " << (end_time - start_time) << " segundos.\n";
+
+    cout << "* Ayala Reyes Arely Daniela" << endl;
+    cout << "* Ortega Gutierrez Edwin Omar" << endl;
+    cout << "* Topete Sarabia Manuel Alejandro" << endl;
+    
     return 0;
 }
