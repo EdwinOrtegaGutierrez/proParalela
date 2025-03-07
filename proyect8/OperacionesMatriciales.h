@@ -10,9 +10,9 @@ class OperacionesMatriciales {
 public:
     // Función para crear una matriz aleatoria distribuida entre los procesos MPI
     void crearMatrizAleatoriaMPI(int filas, int columnas, int* matriz, int rangoProceso, int numProcesos, int semillaExtra = 0) {
-        int elementosPorProceso = (filas * columnas + numProcesos - 1) / numProcesos;
+        int elementosPorProceso = (filas * columnas) / numProcesos;
         int inicio = rangoProceso * elementosPorProceso;
-        int fin = std::min(inicio + elementosPorProceso, filas * columnas);
+        int fin = inicio + elementosPorProceso;
 
         srand(time(NULL) + rangoProceso + semillaExtra);
         for (int i = inicio; i < fin; i++) {
