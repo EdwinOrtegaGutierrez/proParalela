@@ -203,22 +203,32 @@ int main(int argc, char** argv) {
 
             case 5: { // Transponer matrices
                 tiempoInicio = MPI_Wtime();
-
+            
                 // Distribuimos las matrices A y B a todos los procesos
                 MPI_Scatter(matrizA, elementosPorProceso, MPI_INT, porcionA, elementosPorProceso, MPI_INT, 0, MPI_COMM_WORLD);
                 MPI_Scatter(matrizB, elementosPorProceso, MPI_INT, porcionB, elementosPorProceso, MPI_INT, 0, MPI_COMM_WORLD);
-
+            
                 // Cada proceso transpone su porción
                 cout << "Proceso " << rangoProceso << " está transponiendo su porción de las matrices..." << endl;
-                int* transpuestaA = new int[totalElementos];
-                int* transpuestaB = new int[totalElementos];
+                int* transpuestaA = new int[elementosPorProceso];
+                int* transpuestaB = new int[elementosPorProceso];
                 for (int i = 0; i < elementosPorProceso; i++) {
-                    int fila = (rangoProceso * elementosPorProceso + i) / columnas;
-                    int col = (rangoProceso * elementosPorProceso + i) % columnas;
-                    transpuestaA[col * filas + fila] = porcionA[i];
-                    transpuestaB[col * filas + fila] = porcionB[i];
+                    // Calcular la posición original en la matriz
+                    int filaOriginal = (rangoProceso * elementosPorProceso + i) / columnas;
+                    int colOriginal = (rangoProceso * elementosPorProceso + i) % columnas;
+            
+                    // Calcular la posición en la matriz transpuesta
+                    int filaTranspuesta = colOriginal;
+                    int colTranspuesta = filaOriginal;
+            
+                    // Calcular el índice en la porción de la matriz transpuesta
+                    int indiceTranspuesta = filaTranspuesta * filas + colTranspuesta;
+            
+                    // Asignar el valor transpuesto
+                    transpuestaA[indiceTranspuesta] = porcionA[i];
+                    transpuestaB[indiceTranspuesta] = porcionB[i];
                 }
-
+            
                 // Recolectamos los resultados en el proceso 0
                 int* transpuestaAFinal = nullptr;
                 int* transpuestaBFinal = nullptr;
@@ -228,10 +238,10 @@ int main(int argc, char** argv) {
                 }
                 MPI_Gather(transpuestaA, elementosPorProceso, MPI_INT, transpuestaAFinal, elementosPorProceso, MPI_INT, 0, MPI_COMM_WORLD);
                 MPI_Gather(transpuestaB, elementosPorProceso, MPI_INT, transpuestaBFinal, elementosPorProceso, MPI_INT, 0, MPI_COMM_WORLD);
-
+            
                 tiempoFin = MPI_Wtime();
                 MPI_Barrier(MPI_COMM_WORLD);
-
+            
                 if (rangoProceso == 0) {
                     cout << "Transpuesta de A:" << endl;
                     imprimirMatriz(transpuestaAFinal, columnas, filas);
